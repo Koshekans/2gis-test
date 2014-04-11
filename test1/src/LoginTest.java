@@ -1,12 +1,15 @@
+import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Test1 {
+public class LoginTest {
     private WebDriver driver;
     private String baseUrl;
     private boolean acceptNextAlert = true;
@@ -15,16 +18,25 @@ public class Test1 {
     @Before
     public void setUp() throws Exception {
         driver = new FirefoxDriver();
-        baseUrl = "http://code.google.com/";
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        baseUrl = "http://2gis.ru/";
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     @Test
     public void testUntitled() throws Exception {
-        driver.get(baseUrl + "/p/selenium/w/list?can=2&q=%D0%B9%D1%86%D1%83%D0%BA%D0%B5");
-        driver.findElement(By.id("searchq")).clear();
-        driver.findElement(By.id("searchq")).sendKeys("ЙЦУКЕ");
-        driver.findElement(By.cssSelector("span.inIssueList > form > input[type=\"submit\"]")).click();
+        driver.get(baseUrl + "/novosibirsk/zoom/11");
+        driver.findElement(By.cssSelector("div.tools__btn.tools__account")).click();
+        driver.findElement(By.cssSelector("input.auth__formFieldInput.auth__formFieldEmail")).clear();
+        driver.findElement(By.cssSelector("input.auth__formFieldInput.auth__formFieldEmail")).sendKeys("ololo");
+        driver.findElement(By.cssSelector("input.auth__formFieldInput.auth__formFieldPassword")).clear();
+        driver.findElement(By.cssSelector("input.auth__formFieldInput.auth__formFieldPassword")).sendKeys("trololo");
+        driver.findElement(By.cssSelector("button.auth__formSubmitBtn.auth__formLoginSubmitBtn")).click();
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("div.auth__formSubmitValidation")
+                , "Указанный e-mail некорректен"));
+
+      //  assertTrue(containtText("Указанный e-mail некорректен"));
+
     }
 
     @After
@@ -34,6 +46,11 @@ public class Test1 {
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
         }
+    }
+
+    private boolean containtText(String text) {
+        String pageText = driver.findElement(By.xpath("//html")).getText();
+        return pageText.contains(text);
     }
 
     private boolean isElementPresent(By by) {

@@ -1,9 +1,9 @@
 public class Lion {
     private boolean hungry = true;
 
-    public void inputOfGoods(String entities) {
-        entities = entities.toLowerCase();
-        if (entities.equals("антилопа")) {
+    public void inputOfGoods(String inputSymbol) {
+        inputSymbol = inputSymbol.toLowerCase();
+        if (inputSymbol.equals("антилопа")) {
             if (hungry) {
                 System.out.println("Антилопа съедена, лев будет сыт");
                 hungry = false;
@@ -11,14 +11,14 @@ public class Lion {
                 System.out.println("Лев спит");
                 hungry = true;
             }
-        } else if (entities.equals("охотник")) {
+        } else if (inputSymbol.equals("охотник")) {
             if (hungry) {
                 System.out.println("Лев убежал");
             } else {
                 System.out.println("Лев убежал");
                 hungry = true;
             }
-        } else if (entities.equals("дерево")) {
+        } else if (inputSymbol.equals("дерево")) {
             if (hungry) {
                 System.out.println("Лев спит");
             } else {
@@ -26,7 +26,7 @@ public class Lion {
                 hungry = true;
             }
         } else {
-            System.err.println(String.format("Неизвестная строка, %s", entities));
+            System.err.println(String.format("Неизвестная строка, %s", inputSymbol));
         }
     }
 }

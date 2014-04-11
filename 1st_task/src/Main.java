@@ -4,7 +4,7 @@ import java.nio.charset.Charset;
 public class Main {
     public static void main(String args[]) {
         Lion yarrr = new Lion();
-        if (args.length != 3) {
+        if (args.length != 1) {
             printUsage();
             System.exit(1);
         }
