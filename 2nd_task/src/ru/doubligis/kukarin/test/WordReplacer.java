@@ -24,10 +24,10 @@ public class WordReplacer {
     }
 
     /**
-     * Функция, удаляющая из
-     * @param inputFile
-     * @param phrase
-     * @param outputFile
+     * Удаляет вхождения искомой фразы из файла
+     * @param inputFile путь к исходному файлу
+     * @param phrase фраза для удаления
+     * @param outputFile путь к выходному файлу
      */
     private static void removePhraseFromFile(File inputFile, String phrase, File outputFile) {
         FileInputStream inputStream = null;
@@ -70,9 +70,9 @@ public class WordReplacer {
 
     /**
      * Функция, удаляющая заданную подстроку из строки
-     * @param line
-     * @param phrase
-     * @return
+     * @param line текущая строка
+     * @param phrase фраза для удаления
+     * @return строка, в которой удалены вхождения, подлежащие удалению
      */
     private static String processLine(String line, String phrase) {
         String newLine = line.replaceAll(phrase, "");
