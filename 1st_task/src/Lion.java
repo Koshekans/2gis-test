@@ -1,6 +1,13 @@
+/**
+ Класс, реализующий конечный автомат поведения льва.
+ */
 public class Lion {
     private boolean hungry = true;
 
+    /**
+     * Обрабатывает очередной входной символ, выполняя некоторое действие, и, возможно, меняя состояние льва
+     * @param inputSymbol входной символ
+     */
     public void inputOfGoods(String inputSymbol) {
         inputSymbol = inputSymbol.toLowerCase();
         if (inputSymbol.equals("антилопа")) {
