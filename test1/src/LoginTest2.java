@@ -23,7 +23,7 @@ public class LoginTest2 {
     }
 
     @Test
-    public void testUntitled() throws Exception {
+    public void invalidLoginPassPairTest() throws Exception {
         driver.get(baseUrl + "/novosibirsk/zoom/11");
         driver.findElement(By.cssSelector("div.tools__btn.tools__account")).click();
         driver.findElement(By.cssSelector("input.auth__formFieldInput.auth__formFieldEmail")).clear();
@@ -46,36 +46,4 @@ public class LoginTest2 {
         }
     }
 
-    private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
-    private boolean isAlertPresent() {
-        try {
-            driver.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
 }

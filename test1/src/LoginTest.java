@@ -23,7 +23,7 @@ public class LoginTest {
     }
 
     @Test
-    public void testUntitled() throws Exception {
+    public void invalidEmailTest() throws Exception {
         driver.get(baseUrl + "/novosibirsk/zoom/11");
         driver.findElement(By.cssSelector("div.tools__btn.tools__account")).click();
         driver.findElement(By.cssSelector("input.auth__formFieldInput.auth__formFieldEmail")).clear();
@@ -34,9 +34,6 @@ public class LoginTest {
         (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("div.auth__formSubmitValidation")
                 , "Указанный e-mail некорректен"));
-
-      //  assertTrue(containtText("Указанный e-mail некорректен"));
-
     }
 
     @After
@@ -48,41 +45,5 @@ public class LoginTest {
         }
     }
 
-    private boolean containtText(String text) {
-        String pageText = driver.findElement(By.xpath("//html")).getText();
-        return pageText.contains(text);
-    }
 
-    private boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
-    private boolean isAlertPresent() {
-        try {
-            driver.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
-    private String closeAlertAndGetItsText() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            if (acceptNextAlert) {
-                alert.accept();
-            } else {
-                alert.dismiss();
-            }
-            return alertText;
-        } finally {
-            acceptNextAlert = true;
-        }
-    }
 }
