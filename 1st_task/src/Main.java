@@ -5,7 +5,7 @@ public class Main {
     public static void main(String args[]) {
         Lion yarrr = new Lion();
         if (args.length != 3) {
-            System.out.println("Неверный путь к файлу");
+            printUsage();
             System.exit(1);
         }
         File inputFile = new File(args[0]);
@@ -33,6 +33,10 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void printUsage() {
+        System.out.println("Usage: [input file]");
     }
 }
 
